@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,7 +12,7 @@ namespace De_Gokkers
 {
     public class Undergroundworm
     {
-        public int RaceTrackLength = 1130;
+        public int RaceTrackLength = 130;
         public PictureBox MyPictureBox = null;
         public Label MyLabel = null;
         public Random Randomizer = new Random();               //Een instantie van Random (= Willekeurig) 
@@ -20,7 +22,6 @@ namespace De_Gokkers
 
         public bool Run(int distance)
         {
-
 
             if (MyPictureBox.Location.X >= RaceTrackLength)
             {

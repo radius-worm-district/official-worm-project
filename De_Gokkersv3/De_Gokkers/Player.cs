@@ -17,33 +17,52 @@ namespace De_Gokkers
         public Bet MyBet;    // Een instantie van Bet()
         public int Cash;     // Het saldo van de gokker
 
-        public void UpdateLabels()
+        public string UpdateLabels(string Name, int Cash)
         {
+
+            string updatebutton = Name + " heeft " + Cash + ".";
+
+            return updatebutton;
             
-            //Verander mijn label in de omschrijving van mijn weddenschap.
-            //Verander de label op mijn radioknop zodat deze mijn saldo laat zien.
-            //(Bijv. “Lidy heeft 43 euro.”)
+
+            //Verander mijn label in de omschrijving van mijn weddenschap.  DONE
+            //Verander de label op mijn radioknop zodat deze mijn saldo laat zien. DONE
+            //(Bijv. “Lidy heeft 43 euro.”) DONE
         }
 
-        public bool PlaceBet(int amount, int dog)
+        public bool PlaceBet(int amount, int worm)
         {
+            if(Cash >= amount )
+            {
+                MyBet.Worm = worm;
+                MyBet.Amount = amount;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
             //Plaats een nieuwe weddenschap en sla het op in de variabele MyBet.
             //Retourneer een true als de gokker genoeg geld heeft om te wedden.
 
             //Onderstaande regel staat er tijdelijk om foutmeldingen te voorkomen. 
             //Haal deze regel later weg.
-            return true;
 
         }
 
         public void ClearBet()
         {
+            MyBet.hasBetted = false;
+            MyBet.Amount = 0;
+            MyBet.Worm = 0;
             //Maak de weddenschap leeg.
 
         }
 
         public void Collect(int Winner)
         {
+
             //Betaal mijn weddenschap uit.
             //Maak mijn weddenschap leeg.
             //Werk mijn labels bij.

@@ -12,13 +12,37 @@ namespace De_Gokkers
 {
     public partial class Form1 : Form
     {
-        public Player Sietse;
-        public Player Fer;
-        public Player Fedde;
+        public Player Sietse = new Player();
+        public Player Fedde = new Player();
+        public Player Fer = new Player();
+        public int count;
+        public int wormChoice;
 
         public Form1()
         {
             InitializeComponent();
+            Sietse.Cash = 100;
+            Fer.Cash = 75;
+            Fedde.Cash = 25;
+            PlayerSietse.Checked = true;
+            PlayerFedde.Checked = true;
+            PlayerFer.Checked = true;
+            PlayerFedde.Checked = false;
+            PlayerFer.Checked = false;
+            PlayerSietse.Checked = false;
+
+            Bet BetSietse = new Bet();
+            Sietse.MyBet = BetSietse;
+            Sietse.MyBet.Bettor = Sietse;
+            Bet BetFedde = new Bet();
+            Fedde.MyBet = BetFedde;
+            Fedde.MyBet.Bettor = Fedde;
+            Bet BetFer = new Bet();
+            Fer.MyBet = BetFer;
+            Fer.MyBet.Bettor = Fer;
+
+            count = Convert.ToInt32(Inzet_Euro.Value);
+            wormChoice = Convert.ToInt32(Choose_Worm.Value);
         }
 
         private void Start_Button_Click(object sender, EventArgs e)
@@ -26,6 +50,16 @@ namespace De_Gokkers
             Undergroundworm[] Racers = new Undergroundworm[5];
             
             Start_Button.Enabled = false;
+            Wed_Button.Enabled = false;
+
+            Sietse.Cash -= Sietse.MyBet.Amount;
+            Fer.Cash -= Fer.MyBet.Amount;
+            Fedde.Cash -= Fedde.MyBet.Amount;
+            PlayerSietse.Text = Sietse.UpdateLabels("Sietse", Sietse.Cash);
+            PlayerFer.Text = Fer.UpdateLabels("Fer", Fer.Cash);
+            PlayerFedde.Text = Fedde.UpdateLabels("Fedde", Fedde.Cash);
+
+
 
             for (int i = 0; i < Racers.Length; i++)
             {
@@ -87,8 +121,21 @@ namespace De_Gokkers
                 } while (finish != true);
             } while (finishedWorms != 5);
 
+            //payout collect
+
+
+
+            // Clearbet
+            Sietse.ClearBet();
+            Fer.ClearBet();
+            Fedde.ClearBet();
+            label14.Text = "Sietse" + Sietse.MyBet.GetDescription();
+            label13.Text = "Fer" + Fer.MyBet.GetDescription();
+            label12.Text = "Fedde" + Fedde.MyBet.GetDescription();
+
 
             Start_Button.Enabled = true;
+            Wed_Button.Enabled = true;
 
         }
 
@@ -96,26 +143,45 @@ namespace De_Gokkers
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            Sietse = new Player();
-
-            Sietse.Name = "Sietse";
-            PlayerSietse.Text = "Sietse heeft " + Sietse.Cash + " geld.";
-
-            if (PlayerSietse.Checked == true)
+            if(PlayerSietse.Checked == true)
             {
-                PlayerWedName.Text = Sietse.Name + " wed";
+                PlayerSietse.Text = Sietse.UpdateLabels("Sietse", Sietse.Cash);
+                PlayerWedName.Text = "Sietse wed";
             }
-
+            else
+            {
+                PlayerSietse.Text = Sietse.UpdateLabels("Sietse", Sietse.Cash);
+                PlayerWedName.Text = "Geen player gekozen";
+            }
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (PlayerFer.Checked == true)
+            {
+                PlayerFer.Text = Fer.UpdateLabels("Fer", Fer.Cash);
+                PlayerWedName.Text = "Fer wed";
+            }
+            else
+            {
+                PlayerFer.Text = Fer.UpdateLabels("Fer", Fer.Cash);
+                PlayerWedName.Text = "Geen player gekozen";
+            }
         }
 
         private void PlayerFedde_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (PlayerFedde.Checked == true)
+            {
+                
+                PlayerFedde.Text = Fedde.UpdateLabels("Fedde", Fedde.Cash);
+                PlayerWedName.Text = "Fedde wed";
+            }
+            else
+            {
+                PlayerFedde.Text = Fedde.UpdateLabels("Fedde", Fedde.Cash);
+                PlayerWedName.Text = "Geen player gekozen";
+            }
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -142,5 +208,61 @@ namespace De_Gokkers
         {
 
         }
+
+        private void Form1_Load_1(object sender, EventArgs e)
+        {
+        }
+
+        private void Inzet_Euro_ValueChanged(object sender, EventArgs e)
+        {
+            count = Convert.ToInt32(Inzet_Euro.Value);
+        }
+
+        private void Choose_Worm_ValueChanged(object sender, EventArgs e)
+        {
+            wormChoice = Convert.ToInt32(Choose_Worm.Value);
+        }
+
+        private void Wed_Button_Click(object sender, EventArgs e)
+        {
+                if(PlayerFedde.Checked == true)
+                {
+
+                    Fedde.PlaceBet(count, wormChoice);
+                    PlayerFedde.Text = Fedde.UpdateLabels("Fedde", Fedde.Cash);
+                    Fedde.MyBet.hasBetted = true;
+
+                    if(Fedde.MyBet.hasBetted == true)
+                    {
+                        label12.Text = "Fedde" + Fedde.MyBet.GetDescription();
+                    }
+
+                }
+                else if (PlayerFer.Checked == true) 
+                {
+                    Fer.PlaceBet(count, wormChoice);
+                    PlayerFer.Text = Fer.UpdateLabels("Fer", Fer.Cash);
+                    Fer.MyBet.hasBetted = true;
+
+                    if (Fer.MyBet.hasBetted == true)
+                    {
+                        label13.Text = "Fer" + Fer.MyBet.GetDescription();
+                    }
+                }
+                else if (PlayerSietse.Checked == true)
+                {
+                    Sietse.PlaceBet(count, wormChoice);
+                    PlayerSietse.Text = Sietse.UpdateLabels("Sietse", Sietse.Cash);
+                    Sietse.MyBet.hasBetted = true;
+
+                    if (Sietse.MyBet.hasBetted == true)
+                    {
+                        label14.Text = "Sietse" + Sietse.MyBet.GetDescription();
+                    }
+
+            }
+        }
+
+
     }
 }
