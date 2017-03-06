@@ -17,13 +17,14 @@ namespace De_Gokkers
         public Player Fer = new Player();
         public int count;
         public int wormChoice;
+        public int StartButtonStatus = 0;
 
         public Form1()
         {
             InitializeComponent();
             Sietse.Cash = 100;
-            Fer.Cash = 75;
-            Fedde.Cash = 25;
+            Fer.Cash = 100;
+            Fedde.Cash = 100;
             PlayerSietse.Checked = true;
             PlayerFedde.Checked = true;
             PlayerFer.Checked = true;
@@ -48,18 +49,6 @@ namespace De_Gokkers
         private void Start_Button_Click(object sender, EventArgs e)
         {
             Undergroundworm[] Racers = new Undergroundworm[5];
-            
-            Start_Button.Enabled = false;
-            Wed_Button.Enabled = false;
-
-            Sietse.Cash -= Sietse.MyBet.Amount;
-            Fer.Cash -= Fer.MyBet.Amount;
-            Fedde.Cash -= Fedde.MyBet.Amount;
-            PlayerSietse.Text = Sietse.UpdateLabels("Sietse", Sietse.Cash);
-            PlayerFer.Text = Fer.UpdateLabels("Fer", Fer.Cash);
-            PlayerFedde.Text = Fedde.UpdateLabels("Fedde", Fedde.Cash);
-
-
 
             for (int i = 0; i < Racers.Length; i++)
             {
@@ -79,60 +68,121 @@ namespace De_Gokkers
 
             Racers[2].Special = true;
 
-            for (int i = 0; i < Racers.Length; i++)
-            {
-                Racers[i].TakeStartingPosition();
-                Racers[i].MyLabel.Text = Racers[i].ResetLabels();
-                Racers[i].Finished = false;
-            }
+            Start_Button.Enabled = false;
+            Wed_Button.Enabled = false;
 
-            int finishedWorms = 0;
-            int temp = 1;
-            bool finish = false;
-            Random r = new Random();
-
-            do
+            if (StartButtonStatus == 0)
             {
+                Sietse.Cash -= Sietse.MyBet.Amount;
+                Fer.Cash -= Fer.MyBet.Amount;
+                Fedde.Cash -= Fedde.MyBet.Amount;
+                PlayerSietse.Text = Sietse.UpdateLabels("Sietse", Sietse.Cash);
+                PlayerFer.Text = Fer.UpdateLabels("Fer", Fer.Cash);
+                PlayerFedde.Text = Fedde.UpdateLabels("Fedde", Fedde.Cash);
+
+                for (int i = 0; i < Racers.Length; i++)
+                {
+                    Racers[i].MyLabel.Text = Racers[i].ResetLabels(StartButtonStatus);
+                }
+
+
+                //for (int i = 0; i < Racers.Length; i++)
+                //{
+                //    Racers[i] = new Undergroundworm();
+                //}
+
+                //Racers[0].MyPictureBox = Worm;
+                //Racers[0].MyLabel = WedLblWorm1;
+                //Racers[1].MyPictureBox = WormOne;
+                //Racers[1].MyLabel = WedLblWorm2;
+                //Racers[2].MyPictureBox = WormSpecial;
+                //Racers[2].MyLabel = WedLblWorm3;
+                //Racers[3].MyPictureBox = WormTwo;
+                //Racers[3].MyLabel = WedLblWorm4;
+                //Racers[4].MyPictureBox = WormThree;
+                //Racers[4].MyLabel = WedLblWorm5;
+
+                //Racers[2].Special = true;
+
+                //for (int i = 0; i < Racers.Length; i++)
+                //{
+                //    Racers[i].TakeStartingPosition();
+                //    Racers[i].MyLabel.Text = Racers[i].ResetLabels();
+                //    Racers[i].Finished = false;
+                //}
+
+                int finishedWorms = 0;
+                int temp = 1;
+                bool finish = false;
+                Random r = new Random();
+                int winner = 0;
+
                 do
                 {
-                    Application.DoEvents();
-                    for (int i = 0; i < Racers.Length; i++)
+                    do
                     {
-                        if (Racers[i].Finished == false)
+                        Application.DoEvents();
+                        for (int i = 0; i < Racers.Length; i++)
                         {
-                            if (Racers[i].Special == true)
+                            if (Racers[i].Finished == false)
                             {
-                                finish = Racers[i].Run(r.Next(0, 6));
-                            }
-                            else
-                            {
-                                finish = Racers[i].Run(r.Next(1, 5));
-                            }
+                                if (Racers[i].Special == true)
+                                {
+                                    finish = Racers[i].Run(r.Next(0, 6));
+                                }
+                                else
+                                {
+                                    finish = Racers[i].Run(r.Next(1, 5));
+                                }
 
-                            if (finish == true)
+                                if (finish == true)
+                                {
+                                    Racers[i].Place = temp++;
+                                    Racers[i].MyLabel.Text = Racers[i].UpdatePlaceLabels(i, Racers[i].Place);
+                                    Racers[i].Finished = true;
+                                    finishedWorms++;
+                                }
+                            }
+                            if (Racers[i].Place == 1)
                             {
-                                Racers[i].Place = temp++;
-                                Racers[i].MyLabel.Text = Racers[i].UpdatePlaceLabels(i, Racers[i].Place);
-                                Racers[i].Finished = true;
-                                finishedWorms++;
+                                winner = i + 1;
                             }
                         }
-                    }
-                } while (finish != true);
-            } while (finishedWorms != 5);
-
-            //payout collect
+                    } while (finish != true);
+                } while (finishedWorms != 5);
 
 
+                //string test = Convert.ToString(winner);
+                //label4.Text = test;
 
-            // Clearbet
-            Sietse.ClearBet();
-            Fer.ClearBet();
-            Fedde.ClearBet();
-            label14.Text = "Sietse" + Sietse.MyBet.GetDescription();
-            label13.Text = "Fer" + Fer.MyBet.GetDescription();
-            label12.Text = "Fedde" + Fedde.MyBet.GetDescription();
+                //payout collect
+                Sietse.Cash += Sietse.MyBet.PayOut(winner);
+                Fer.Cash += Fer.MyBet.PayOut(winner);
+                Fedde.Cash += Fedde.MyBet.PayOut(winner);
 
+                Start_Button.Text = "Reset De Race";
+                StartButtonStatus++;
+            }
+
+            else if (StartButtonStatus == 1)
+            {
+                for (int i = 0; i < Racers.Length; i++)
+                {
+                    Racers[i].TakeStartingPosition();
+                    Racers[i].MyLabel.Text = Racers[i].ResetLabels(StartButtonStatus);
+                    Racers[i].Finished = false;
+                }
+
+                Sietse.ClearBet();
+                Fer.ClearBet();
+                Fedde.ClearBet();
+                label14.Text = "Sietse" + Sietse.MyBet.GetDescription();
+                label13.Text = "Fer" + Fer.MyBet.GetDescription();
+                label12.Text = "Fedde" + Fedde.MyBet.GetDescription();
+                Start_Button.Text = "Start De Race";
+
+                StartButtonStatus = 0;
+            }
 
             Start_Button.Enabled = true;
             Wed_Button.Enabled = true;

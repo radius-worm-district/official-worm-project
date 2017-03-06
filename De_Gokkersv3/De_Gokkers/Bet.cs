@@ -45,8 +45,15 @@ namespace De_Gokkers
 
         public int PayOut(int Winner)
         {
-
-            return 1;
+            if(Winner == Worm)
+            {
+                return Amount * 2;
+            }
+            else
+            {
+                return 0;
+            }
+            
             //De parameter van deze methode is de winnaar van de race.
             //Als de hond gewonnen heeft, retourneer dan het bedrag dat gewed is
             //Anders, retourneer het tegengestelde van het gewedde bedrag.

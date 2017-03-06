@@ -53,9 +53,19 @@ namespace De_Gokkers
             return update;
         }
 
-        public string ResetLabels()
+        public string ResetLabels(int kind)
         {
-            string update = "De race is bezig!";
+            string update = "test";
+            if (kind == 0)
+            {
+                string update1 = "De race is bezig!";
+                update = update1;
+            }
+            else if (kind == 1)
+            {
+                string update1 = "Race is nog niet begonnen...";
+                update = update1;
+            }  
             return update;
         }
     }
