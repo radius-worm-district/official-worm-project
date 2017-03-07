@@ -60,12 +60,15 @@ namespace De_Gokkers
 
         }
 
-        public void Collect(int Winner)
+        public int Collect(int Winner)
         {
+            int winnings =  MyBet.PayOut(Winner);
 
+            Cash += winnings;
             //Betaal mijn weddenschap uit.
             //Maak mijn weddenschap leeg.
             //Werk mijn labels bij.
+            return winnings;
         }
 
     }

@@ -139,9 +139,11 @@ namespace De_Gokkers
                     } while (finish != true);
                 } while (finishedWorms != 5);
 
+                //payout collect
+
                 string test = Convert.ToString(winner);
                 if(Sietse.MyBet.Worm == winner) {
-                    label11.Text = "Sietse heeft gewonnen " + Sietse.MyBet.PayOut(winner) + " euro gewonnen.";
+                    label11.Text = "Sietse heeft gewonnen " + Sietse.Collect(winner) + " euro gewonnen.";
                 }
                 else
                 {
@@ -149,7 +151,7 @@ namespace De_Gokkers
                 }
                 if (Fer.MyBet.Worm == winner)
                 {
-                    label10.Text = "Fer heeft gewonnen " + Fer.MyBet.PayOut(winner) + " euro gewonnen.";
+                    label10.Text = "Fer heeft gewonnen " + Fer.Collect(winner) + " euro gewonnen.";
                 }
                 else
                 {
@@ -157,19 +159,12 @@ namespace De_Gokkers
                 }
                 if (Fedde.MyBet.Worm == winner)
                 {
-                    label9.Text = "Fedde heeft gewonnen " + Fedde.MyBet.PayOut(winner) + " euro gewonnen.";
+                    label9.Text = "Fedde heeft gewonnen " + Fedde.Collect(winner) + " euro gewonnen.";
                 }
                 else
                 {
                     label9.Text = "Fedde heeft heeft " + Fedde.MyBet.Amount + " euro verloren.";
                 }
-
-                //payout collect
-                Sietse.Cash += Sietse.MyBet.PayOut(winner);
-                Fer.Cash += Fer.MyBet.PayOut(winner);
-                Fedde.Cash += Fedde.MyBet.PayOut(winner);
-
-                //Update money after the race by radiobuttons
 
                 Start_Button.Text = "Reset De Race";
                 StartButtonStatus++;
