@@ -370,29 +370,29 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(30, 133);
+            this.label11.Location = new System.Drawing.Point(30, 123);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(99, 13);
+            this.label11.Size = new System.Drawing.Size(156, 13);
             this.label11.TabIndex = 2;
-            this.label11.Text = "(Player) won or loos";
+            this.label11.Text = "Resultaten zijn nog niet bekend";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(30, 161);
+            this.label10.Location = new System.Drawing.Point(30, 145);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(99, 13);
+            this.label10.Size = new System.Drawing.Size(156, 13);
             this.label10.TabIndex = 1;
-            this.label10.Text = "(Player) won or loos";
+            this.label10.Text = "Resultaten zijn nog niet bekend";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(30, 198);
+            this.label9.Location = new System.Drawing.Point(29, 167);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(99, 13);
+            this.label9.Size = new System.Drawing.Size(156, 13);
             this.label9.TabIndex = 0;
-            this.label9.Text = "(Player) won or loos";
+            this.label9.Text = "Resultaten zijn nog niet bekend";
             // 
             // Start_Button
             // 

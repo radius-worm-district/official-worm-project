@@ -89,3 +89,12 @@ C:\Users\Iwan\Desktop\School\Git\official-worm-project\De_Gokkersv3\De_Gokkers\o
 C:\Users\Iwan\Desktop\School\Git\official-worm-project\De_Gokkersv3\De_Gokkers\obj\Debug\De_Gokkers.Form1.resources
 C:\Users\Iwan\Desktop\School\Git\official-worm-project\De_Gokkersv3\De_Gokkers\obj\Debug\De_Gokkers.Properties.Resources.resources
 C:\Users\Iwan\Desktop\School\Git\official-worm-project\De_Gokkersv3\De_Gokkers\obj\Debug\De_Gokkers.csproj.GenerateResource.Cache
+C:\Users\tt140\Desktop\Worms\official-worm-project\De_Gokkersv3\De_Gokkers\bin\Debug\De_Gokkers.exe.config
+C:\Users\tt140\Desktop\Worms\official-worm-project\De_Gokkersv3\De_Gokkers\obj\Debug\De_Gokkers.exe
+C:\Users\tt140\Desktop\Worms\official-worm-project\De_Gokkersv3\De_Gokkers\obj\Debug\De_Gokkers.pdb
+C:\Users\tt140\Desktop\Worms\official-worm-project\De_Gokkersv3\De_Gokkers\bin\Debug\De_Gokkers.exe
+C:\Users\tt140\Desktop\Worms\official-worm-project\De_Gokkersv3\De_Gokkers\bin\Debug\De_Gokkers.pdb
+C:\Users\tt140\Desktop\Worms\official-worm-project\De_Gokkersv3\De_Gokkers\obj\Debug\De_Gokkers.csprojResolveAssemblyReference.cache
+C:\Users\tt140\Desktop\Worms\official-worm-project\De_Gokkersv3\De_Gokkers\obj\Debug\De_Gokkers.Form1.resources
+C:\Users\tt140\Desktop\Worms\official-worm-project\De_Gokkersv3\De_Gokkers\obj\Debug\De_Gokkers.Properties.Resources.resources
+C:\Users\tt140\Desktop\Worms\official-worm-project\De_Gokkersv3\De_Gokkers\obj\Debug\De_Gokkers.csproj.GenerateResource.Cache

@@ -12,7 +12,7 @@ namespace De_Gokkers
 {
     public class Undergroundworm
     {
-        public int RaceTrackLength = 130;
+        public int RaceTrackLength = 1130;
         public PictureBox MyPictureBox = null;
         public Label MyLabel = null;
         public Random Randomizer = new Random();               //Een instantie van Random (= Willekeurig) 

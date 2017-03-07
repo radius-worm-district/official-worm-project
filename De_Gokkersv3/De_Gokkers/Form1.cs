@@ -48,6 +48,7 @@ namespace De_Gokkers
 
         private void Start_Button_Click(object sender, EventArgs e)
         {
+
             Undergroundworm[] Racers = new Undergroundworm[5];
 
             for (int i = 0; i < Racers.Length; i++)
@@ -69,10 +70,23 @@ namespace De_Gokkers
             Racers[2].Special = true;
 
             Start_Button.Enabled = false;
-            Wed_Button.Enabled = false;
+            Wed_Button.Enabled = true;
+            Inzet_Euro.Enabled = true;
+            Choose_Worm.Enabled = true;
+
+            PlayerFedde.Enabled = true;
+            PlayerFer.Enabled = true;
+            PlayerSietse.Enabled = true;
 
             if (StartButtonStatus == 0)
             {
+                PlayerFedde.Enabled = false;
+                PlayerFer.Enabled = false;
+                PlayerSietse.Enabled = false;
+                Wed_Button.Enabled = false;
+                Inzet_Euro.Enabled = false;
+                Choose_Worm.Enabled = false;
+
                 Sietse.Cash -= Sietse.MyBet.Amount;
                 Fer.Cash -= Fer.MyBet.Amount;
                 Fedde.Cash -= Fedde.MyBet.Amount;
@@ -84,32 +98,6 @@ namespace De_Gokkers
                 {
                     Racers[i].MyLabel.Text = Racers[i].ResetLabels(StartButtonStatus);
                 }
-
-
-                //for (int i = 0; i < Racers.Length; i++)
-                //{
-                //    Racers[i] = new Undergroundworm();
-                //}
-
-                //Racers[0].MyPictureBox = Worm;
-                //Racers[0].MyLabel = WedLblWorm1;
-                //Racers[1].MyPictureBox = WormOne;
-                //Racers[1].MyLabel = WedLblWorm2;
-                //Racers[2].MyPictureBox = WormSpecial;
-                //Racers[2].MyLabel = WedLblWorm3;
-                //Racers[3].MyPictureBox = WormTwo;
-                //Racers[3].MyLabel = WedLblWorm4;
-                //Racers[4].MyPictureBox = WormThree;
-                //Racers[4].MyLabel = WedLblWorm5;
-
-                //Racers[2].Special = true;
-
-                //for (int i = 0; i < Racers.Length; i++)
-                //{
-                //    Racers[i].TakeStartingPosition();
-                //    Racers[i].MyLabel.Text = Racers[i].ResetLabels();
-                //    Racers[i].Finished = false;
-                //}
 
                 int finishedWorms = 0;
                 int temp = 1;
@@ -151,14 +139,37 @@ namespace De_Gokkers
                     } while (finish != true);
                 } while (finishedWorms != 5);
 
-
-                //string test = Convert.ToString(winner);
-                //label4.Text = test;
+                string test = Convert.ToString(winner);
+                if(Sietse.MyBet.Worm == winner) {
+                    label11.Text = "Sietse heeft gewonnen " + Sietse.MyBet.PayOut(winner) + " euro gewonnen.";
+                }
+                else
+                {
+                    label11.Text = "Sietse heeft " + Sietse.MyBet.Amount + " euro verloren.";
+                }
+                if (Fer.MyBet.Worm == winner)
+                {
+                    label10.Text = "Fer heeft gewonnen " + Fer.MyBet.PayOut(winner) + " euro gewonnen.";
+                }
+                else
+                {
+                    label10.Text = "Fer heeft heeft " + Fer.MyBet.Amount + " euro verloren.";
+                }
+                if (Fedde.MyBet.Worm == winner)
+                {
+                    label9.Text = "Fedde heeft gewonnen " + Fedde.MyBet.PayOut(winner) + " euro gewonnen.";
+                }
+                else
+                {
+                    label9.Text = "Fedde heeft heeft " + Fedde.MyBet.Amount + " euro verloren.";
+                }
 
                 //payout collect
                 Sietse.Cash += Sietse.MyBet.PayOut(winner);
                 Fer.Cash += Fer.MyBet.PayOut(winner);
                 Fedde.Cash += Fedde.MyBet.PayOut(winner);
+
+                //Update money after the race by radiobuttons
 
                 Start_Button.Text = "Reset De Race";
                 StartButtonStatus++;
@@ -179,13 +190,23 @@ namespace De_Gokkers
                 label14.Text = "Sietse" + Sietse.MyBet.GetDescription();
                 label13.Text = "Fer" + Fer.MyBet.GetDescription();
                 label12.Text = "Fedde" + Fedde.MyBet.GetDescription();
+                label11.Text = "Resultaten zijn nog niet bekend.";
+                label10.Text = "Resultaten zijn nog niet bekend.";
+                label9.Text = "Resultaten zijn nog niet bekend.";
                 Start_Button.Text = "Start De Race";
 
                 StartButtonStatus = 0;
+
+                PlayerSietse.Checked = true;
+                PlayerFedde.Checked = true;
+                PlayerFer.Checked = true;
+                PlayerFedde.Checked = false;
+                PlayerFer.Checked = false;
+                PlayerSietse.Checked = false;
+
             }
 
             Start_Button.Enabled = true;
-            Wed_Button.Enabled = true;
 
         }
 
