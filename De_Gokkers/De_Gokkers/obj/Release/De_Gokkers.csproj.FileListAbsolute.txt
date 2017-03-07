@@ -1,9 +1,0 @@
-C:\Users\tt140\AppData\Local\Temporary Projects\De_Gokkers\obj\Release\De_Gokkers.csprojResolveAssemblyReference.cache
-C:\Users\tt140\AppData\Local\Temporary Projects\De_Gokkers\obj\Release\De_Gokkers.Properties.Resources.resources
-C:\Users\tt140\AppData\Local\Temporary Projects\De_Gokkers\obj\Release\De_Gokkers.csproj.GenerateResource.Cache
-C:\Users\tt140\Dropbox\De Gokkers Project\De_Gokkers\De_Gokkers\bin\Release\De_Gokkers.exe.config
-C:\Users\Kevin\Dropbox\De Gokkers Project\De_Gokkers\De_Gokkers\bin\Release\De_Gokkers.exe.config
-C:\Users\Kevin\Dropbox\De Gokkers Project\De_Gokkers\De_Gokkers\obj\Release\De_Gokkers.csprojResolveAssemblyReference.cache
-C:\Users\Kevin\Dropbox\De Gokkers Project\De_Gokkers\De_Gokkers\obj\Release\De_Gokkers.Form1.resources
-C:\Users\Kevin\Dropbox\De Gokkers Project\De_Gokkers\De_Gokkers\obj\Release\De_Gokkers.Properties.Resources.resources
-C:\Users\Kevin\Dropbox\De Gokkers Project\De_Gokkers\De_Gokkers\obj\Release\De_Gokkers.csproj.GenerateResource.Cache
